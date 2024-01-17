@@ -1,10 +1,12 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import userReducer from "./user/userSlice";
-import { persistReducer,persistStore } from "redux-persist";
+import themeReducer from "./theme/themeSlice";
+import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
 const rootReducer = combineReducers({
   user: userReducer,
+  theme: themeReducer,
 });
 
 const persistConfig = {
@@ -21,6 +23,6 @@ export const store = configureStore({
     getDefaultMiddleware({ serializableCheck: false }),
 });
 
-export const persistor=persistStore(store)
+export const persistor = persistStore(store);
 
 // l persiste kerml bas 23eml refresh ma tru7 l data w hek betsir bl localstorage
