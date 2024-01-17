@@ -1,7 +1,20 @@
-import express from 'express' // if i want to use import i should add "type":"module" in package.json
+import express from "express"; // if i want to use import i should add "type":"module" in package.json
+import mongoose from "mongoose";
+import dotenv from 'dotenv'
 
-const app=express();
+dotenv.config();
 
-app.listen(3000,()=>{
-    console.log(`Server is running on port 3000`)
-})
+mongoose
+  .connect(process.env.MONGO)
+  .then(() => {
+    console.log("MongoDb is Connected");
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+
+const app = express();
+
+app.listen(3000, () => {
+  console.log(`Server is running on port 3000`);
+});
