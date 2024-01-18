@@ -1,6 +1,7 @@
-const mongoose = require("mongoose"); // Erase if already required
+import mongoose from "mongoose"; 
 
-var postSchema = new mongoose.Schema({
+var postSchema = new mongoose.Schema(
+  {
   userId: {
     type: String,
     required: true,
@@ -33,4 +34,5 @@ var postSchema = new mongoose.Schema({
 });
 
 //Export the model
-module.exports = mongoose.model("Post", postSchema);
+const Post = mongoose.model("Post", postSchema);
+export default Post;
