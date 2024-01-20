@@ -104,7 +104,7 @@ const CommentSection = ({ postId }) => {
         method: "DELETE",
       });
       if (res.ok) {
-        const data = await res.json();
+        await res.json();
         setComments(comments.filter((comment) => comment._id != commentId));
         
       }
@@ -112,6 +112,7 @@ const CommentSection = ({ postId }) => {
       console.log(error.message);
     }
   };
+  
   return (
     <div className="max-w-2xl mx-auto w-full p-3">
       {currentUser ? (
