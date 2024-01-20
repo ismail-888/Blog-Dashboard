@@ -5,7 +5,7 @@ import moment from "moment";
 import { useSelector } from "react-redux";
 import { Button, Textarea } from "flowbite-react";
 
-const Comment = ({ comment, onLike,onEdit }) => {
+const Comment = ({ comment, onLike,onEdit,onDelete }) => {
   const [user, setUser] = useState({});
   const [isEditing, setIsEditing] = useState(false);
   const [editedContent, setEditedContent] = useState(comment.content);
@@ -30,7 +30,7 @@ const Comment = ({ comment, onLike,onEdit }) => {
 
   const hadleEdit = () => {
     setIsEditing(true);
-    setEditContent(comment.content);
+    setEditedContent(comment.content);
   };
 
   const handleSave = async () => {
@@ -120,6 +120,7 @@ const Comment = ({ comment, onLike,onEdit }) => {
               </p>
               {currentUser &&
                 (currentUser._id === comment.userId || currentUser.isAdmin) && (
+                  <>
                   <button
                     type="button"
                     className="text-gray-400 hover:text-blue-500"
@@ -127,6 +128,14 @@ const Comment = ({ comment, onLike,onEdit }) => {
                   >
                     Edit
                   </button>
+                  <button
+                    type="button"
+                    className="text-gray-400 hover:text-red-500"
+                    onClick={()=>onDelete(comment._id)}
+                  >
+                    Delete
+                  </button>
+                  </>
                 )}
             </div>
           </>
